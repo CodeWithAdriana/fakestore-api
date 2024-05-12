@@ -1,4 +1,3 @@
-//Borrar=esto es lo que llama el muchacho como pagination
 import React from "react";
 
 export const LandingPage = ({
