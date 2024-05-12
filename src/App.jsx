@@ -6,12 +6,23 @@ import "./App.css";
 
 function App() {
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
 
   return (
     <>
-      <h1 className="tittle">Bienvenido A FakeStore</h1>
-      <Buscador search={search} setSearch={setSearch} />
-      <MiApi search={search} />
+      <nav className="navbar navbar-expand-lg bg">
+        <div className="container-fluid">
+          <h1 className="navbar-brand">Bienvenido A FakeStore</h1>
+          <div className="d-flex">
+            <Buscador
+              search={search}
+              setSearch={setSearch}
+              setCategory={setCategory}
+            />
+          </div>
+        </div>
+      </nav>
+      <MiApi search={search} category={category} />
     </>
   );
 }

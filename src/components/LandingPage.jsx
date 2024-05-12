@@ -33,9 +33,7 @@ export const LandingPage = ({
             href="#"
             aria-label="Previous"
             onClick={onPreviusPage}
-          >
-            <span aria-hidden="true">&laquo;</span>
-          </a>
+          ></a>
         </li>
         {pageNumbers.map((noPage) => (
           <li key={noPage}>
@@ -57,9 +55,7 @@ export const LandingPage = ({
             href="#"
             onClick={onNextPage}
             aria-label="Next"
-          >
-            <span aria-hidden="true">&raquo;</span>
-          </a>
+          ></a>
         </li>
       </ul>
     </nav>

@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { LandingPage } from "./LandingPage";
 
-export const MiApi = ({ search }) => {
+export const MiApi = ({ search, category }) => {
   const [productsApi, setProductsApi] = useState([]);
 
   const totalProducts = productsApi.length;
@@ -24,45 +24,66 @@ export const MiApi = ({ search }) => {
       console.log("No trae datos");
     }
   };
+
   useEffect(() => {
     MiApi();
   }, []);
+
   let productosAmostrar = [];
   if (search === "") {
-    productosAmostrar = productsApi;
+    productosAmostrar =
+      category === ""
+        ? productsApi
+        : productsApi.filter((producto) => producto.category === category);
   } else {
-    productosAmostrar = productsApi.filter((producto) =>
-      producto.name.toLowerCase().includes(search.toLowerCase())
+    productosAmostrar = productsApi.filter(
+      (producto) =>
+        producto.title.toLowerCase().includes(search.toLowerCase()) &&
+        (category === "" || producto.category === category)
     );
   }
+
+  productosAmostrar.sort((a, b) => a.price - b.price);
+
   return (
     <>
-      <div className="card">
-        {productosAmostrar
-          .map((producto) => (
-            <div key={producto.id} className="card-product">
-              <figure>
-                <img
-                  src={producto.image}
-                  className="card-img-top"
-                  alt={producto.title}
-                />
-              </figure>
-              <div className="card-body">
-                <h3 className="card-title">{producto.title}</h3>
-                <p className="card-text">$ {producto.price}</p>
-                <button className="btn btn-primary"> Anadir al Carrito</button>
+      <div className="container mt-4">
+        <div className="row">
+          {productosAmostrar
+            .map((producto) => (
+              <div
+                key={producto.id}
+                className="col-md-4 mb-4 d-flex align-items-stretch"
+              >
+                <div className="card">
+                  <img
+                    src={producto.image}
+                    className="card-img-top"
+                    alt={producto.title}
+                  />
+                  <hr />
+                  <div className="card-body">
+                    <h3 className="card-title">{producto.title}</h3>
+                    <p className="card-text"> Precio: ${producto.price}</p>
+                    <p className="card-category">
+                      Categoria: {producto.category}{" "}
+                    </p>
+                    <button className="btn btn-primary">
+                      Anadir al Carrito
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))
-          .slice(firstIndex, lastIndex)}
+            ))
+            .slice(firstIndex, lastIndex)}
+        </div>
+        <LandingPage
+          productsPerPage={productsPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={totalProducts}
+        />
       </div>
-      <LandingPage
-        productsPerPage={productsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalProducts={totalProducts}
-      />
     </>
   );
 };
