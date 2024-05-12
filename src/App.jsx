@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { MiApi } from "./components/MiApi";
 import { Buscador } from "./components/Buscador";
-import "./App.css";
 
 function App() {
   const [search, setSearch] = useState("");
