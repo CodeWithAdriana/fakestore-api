@@ -3,7 +3,7 @@
     padding: 0;
   }
 
-  body{
+body{
     body {
         font-family: 'Poppins', sans-serif;
         margin: 0 auto;
@@ -11,7 +11,7 @@
         padding: 20px;
 }
 
-.card {
+.card{
     border-radius: 10px;
     width: 300px;
     height: 450px;
