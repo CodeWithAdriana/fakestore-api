@@ -1,4 +1,3 @@
-//esta va a ser el Mi Api
 import React from "react";
 import { useState, useEffect } from "react";
 import { LandingPage } from "./LandingPage";
